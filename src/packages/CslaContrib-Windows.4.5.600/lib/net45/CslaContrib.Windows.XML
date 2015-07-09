@@ -1,0 +1,981 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CslaContrib.Windows</name>
+    </assembly>
+    <members>
+        <member name="T:CslaContrib.Windows.BindableRadioButtons">
+            <summary>
+            A control that encapsulates a list of radio buttons bindable in much the
+            same way as a ComboBox
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.#ctor">
+            <summary>
+            Creates an instance of the BindableRadioButtons control
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> containing the name of the <see cref="T:System.ComponentModel.Component"/>, if any. This method should not be overridden.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> containing the name of the <see cref="T:System.ComponentModel.Component"/>, if any, or null if the <see cref="T:System.ComponentModel.Component"/> is unnamed.
+            </returns>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.GenerateLookupKeys">
+            <summary>
+            Automatically generates lookup keys
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.PrepareDataSource">
+            <summary>
+            Add listener to change in datasource or datasource's child datasource
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.Select(System.Object)">
+            <summary>
+            Selectes the radio button with the specified key.
+            If the key cannot be found, false is returned
+            </summary>
+            <param name="key">The key for the radio button</param>
+            <returns>True if selection is performed successfully</returns>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.NotifyDatabindings">
+            <summary>
+            Writes to the databound objects
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.GetButtonTable">
+            <summary>
+            Returns a Hashtable of the buttons in this group with the key 
+            set to whatever the databinding specifies in Value
+            </summary>
+            <returns>A hashtable of the buttons</returns>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.GetButtonList">
+            <summary>
+            Returns a type-safe list of the buttons in this group
+            </summary>
+            <returns>a type-safe list of the buttons in this group</returns>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.IsInputKey(System.Windows.Forms.Keys)">
+            <summary>
+            Determines whether the specified key is a regular input key or a special key that requires preprocessing.
+            </summary>
+            <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys"/> values.</param>
+            <returns>
+            true if the specified key is a regular input key; otherwise, false.
+            </returns>
+        </member>
+        <member name="F:CslaContrib.Windows.BindableRadioButtons.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.BindableRadioButtons.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.SelectedValue">
+            <summary>
+            Indicates which radiobutton is checked
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.DataSource">
+            <summary>
+            Indicates the list that this control will use to get its items
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.DisplayMember">
+            <summary>
+            Indicates the property to display for the items in this control.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.ValueMember">
+            <summary>
+            Indicates the property to use as the actual value for the items in the control.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.ButtonCount">
+            <summary>
+            Number of controls do display in the designer. Has no
+            run-time functionality.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.AutogenerateLookupKeys">
+            <summary>
+            Generates lookup-keys automatically if true
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.UsedLookupCharacters">
+            <summary>
+            List a number of characters here that will be excluded from 
+            automatic lookup character assignment.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.ButtonPadding">
+            <summary>
+            The number of pixels to pad between each radio button.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.FlowDirection">
+            <summary>
+            In what direction the buttons are laid out
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.BindableRadioButtons.WrapContents">
+            <summary>
+            Wrap the controls
+            </summary>
+        </member>
+        <member name="E:CslaContrib.Windows.BindableRadioButtons.SelectedIndexChanged">
+            <summary>
+            Occurs when the selected radio button changes
+            </summary>
+        </member>
+        <member name="T:CslaContrib.Windows.BindingSourceExtensions">
+            <summary>
+            Helper class to manually do correct Bind and Unbind.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.BindingSourceExtensions.Unbind(System.Windows.Forms.BindingSource,System.Boolean,System.Boolean)">
+            <summary>
+            Unbind the binding source and the Data object.
+            Use this Method to safely disconnect the data object from a BindingSource before saving data.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="cancel">if set to <c>true</c> then call CancelEdit else call EndEdit.</param>
+            <param name="isRoot">if set to <c>true</c> this BindingSource contains the Root object. Set to <c>false</c> for nested BindingSources</param>
+        </member>
+        <member name="M:CslaContrib.Windows.BindingSourceExtensions.Rebind(System.Windows.Forms.BindingSource,System.Object)">
+            <summary>
+            Rebind the binding source and business object.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="data">The data object.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.BindingSourceExtensions.Rebind(System.Windows.Forms.BindingSource,System.Object,System.Boolean)">
+            <summary>
+            Rebind the binding source and business object.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="data">The data object.</param>
+            <param name="metadataChanged">if set to <c>true</c> then metadata (type) was changed.</param>
+        </member>
+        <member name="T:CslaContrib.Windows.CslaComboBox">
+            <summary>
+            Represents a Windows combo box control. It enhances the .NET standard combo box control
+            with a ReadOnly mode and works fine with Csla NameValueList.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.Hide">
+            <summary>
+            Conceals the control from the user.
+            </summary>
+            <remarks>
+            Hiding the control is equvalent to setting the <see cref="P:CslaContrib.Windows.CslaComboBox.Visible"/> property to <b>false</b>. 
+            After the <b>Hide</b> method is called, the <b>Visible</b> property returns a value of 
+            <b>false</b> until the <see cref="M:CslaContrib.Windows.CslaComboBox.Show"/> method is called.
+            </remarks>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.Show">
+            <summary>
+            Displays the control to the user.
+            </summary>
+            <remarks>
+            Showing the control is equivalent to setting the <see cref="P:CslaContrib.Windows.CslaComboBox.Visible"/> property to <b>true</b>.
+            After the <b>Show</b> method is called, the <b>Visible</b> property returns a value of 
+            <b>true</b> until the <see cref="M:CslaContrib.Windows.CslaComboBox.Hide"/> method is called.
+            </remarks>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.BeginInit">
+            <summary>Called by InitializeComponent()</summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.EndInit">
+            <summary>Called by InitializeComponent()</summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.AddTextbox">
+            <summary>
+            Initializes the embedded TextBox with the default values from the ComboBox
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.UpdateControlDisplay">
+            <summary>
+            Shows either the ComboBox or the TextBox or nothing, depending on the state
+            of the ReadOnly, Enable and Visible flags.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnParentChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnParentChanged(System.EventArgs)"/>
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnSelectedIndexChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.ComboBox.OnSelectedIndexChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnDropDownStyleChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.ComboBox.OnDropDownStyleChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnFontChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.ComboBox.OnFontChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnResize(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.ComboBox.OnResize(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnDockChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnDockChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnEnabledChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnEnabledChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnRightToLeftChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnRightToLeftChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnTextChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnLocationChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnLocationChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.CslaComboBox.OnTabIndexChanged(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnTabIndexChanged(System.EventArgs)"/>.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="E:CslaContrib.Windows.CslaComboBox.GetNameValueList">
+            <summary>
+            Event that is raised when a data binding error occurs.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.CslaComboBox.ReadOnly">
+            <summary>
+            Gets or sets a value indicating whether the control is read-only.
+            </summary>
+            <value>
+            	<b>true</b> if the combo box is read-only; otherwise, <b>false</b>. The default is <b>false</b>.
+            </value>
+            <remarks>
+            When this property is set to <b>true</b>, the contents of the control cannot be changed
+            by the user at runtime. With this property set to <b>true</b>, you can still set the value
+            in code. You can use this feature instead of disabling the control with the Enabled
+            property to allow the contents to be copied.
+            This property cannot be set at design time as it's intended to be handled only by ReadWriteAuthorization control.
+            </remarks>
+        </member>
+        <member name="P:CslaContrib.Windows.CslaComboBox.Visible">
+            <summary>
+            Gets or sets a value indicating wether the control is displayed.
+            </summary>
+            <value><b>true</b> if the control is displayed; otherwise, <b>false</b>. 
+            The default is <b>true</b>.</value>
+        </member>
+        <member name="T:CslaContrib.Windows.NameValueListEventHandler">
+            <summary>
+            Represents the method that handles an event caused by data binding errors.
+            </summary>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">An <see cref="T:CslaContrib.Windows.NameValueListEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:CslaContrib.Windows.NameValueListEventArgs">
+            <summary>
+            NameValueListEventArgs defines the event arguments to report a data binding error.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.NameValueListEventArgs.#ctor(Csla.NameValueListBase{System.Int32,System.String})">
+            <summary>
+            Constructor creates a new NameValueListEventArgs object instance using the information specified.
+            </summary>
+            <param name="nameValueList">The binding that caused th exception.</param>
+        </member>
+        <member name="P:CslaContrib.Windows.NameValueListEventArgs.NameValueList">
+            <summary>
+            Gets the bound NameValueList that caused the exception.
+            </summary>
+            <value>The NameValueList.</value>
+        </member>
+        <member name="T:CslaContrib.Windows.ErrorWarnInfoProvider">
+            <summary>
+            WindowsForms extender control that automatically
+            displays error, warning, or information icons and
+            text for the form controls based on the
+            BrokenRulesCollection of a CSLA .NET business object.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.#cctor">
+            <summary>
+            Initializes the <see cref="T:CslaContrib.Windows.ErrorWarnInfoProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CslaContrib.Windows.ErrorWarnInfoProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Creates an instance of the object.
+            </summary>
+            <param name="container">The container of the control.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.ComponentModel.Component"></see> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.System#ComponentModel#IExtenderProvider#CanExtend(System.Object)">
+            <summary>
+            Gets a value indicating whether the extender control
+            can extend the specified control.
+            </summary>
+            <param name="extendee">The control to be extended.</param>
+            <remarks>
+            Any control implementing either a ReadOnly property or
+            Enabled property can be extended.
+            </remarks>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.Clear">
+            <summary>
+            Clears all errors associated with this component.
+            </summary>
+            <PermissionSet><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/></PermissionSet>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.GetInformation(System.Windows.Forms.Control)">
+            <summary>
+            Returns the current information description string for the specified control.
+            </summary>
+            <param name="control">The item to get the error description string for.</param>
+            <returns>The information description string for the specified control.</returns>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.GetWarning(System.Windows.Forms.Control)">
+            <summary>
+            Returns the current warning description string for the specified control.
+            </summary>
+            <param name="control">The item to get the error description string for.</param>
+            <returns>The warning description string for the specified control.</returns>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.ProcessControl(System.Windows.Forms.Control)">
+            <summary>
+            Processes the control.
+            </summary>
+            <param name="control">The control.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.SetInformation(System.Windows.Forms.Control,System.String)">
+            <summary>
+            Sets the information description string for the specified control.
+            </summary>
+            <param name="control">The control to set the information description string for.</param>
+            <param name="value">The information description string, or null or System.String.Empty to remove the information description.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.SetWarning(System.Windows.Forms.Control,System.String)">
+            <summary>
+            Sets the warning description string for the specified control.
+            </summary>
+            <param name="control">The control to set the warning description string for.</param>
+            <param name="value">The warning description string, or null or System.String.Empty to remove the warning description.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ErrorWarnInfoProvider.UpdateBinding">
+            <summary>
+            Provides a method to update the bindings of the <see cref="P:System.Windows.Forms.ErrorProvider.DataSource"></see>, <see cref="P:System.Windows.Forms.ErrorProvider.DataMember"></see>, and the error text.
+            </summary>
+            <PermissionSet><IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/><IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/></PermissionSet>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkRate">
+            <summary>
+            Gets or sets the rate at which the error icon flashes.
+            </summary>
+            <value>The rate, in milliseconds, at which the error icon should flash. The default is 250 milliseconds.</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value is less than zero. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkRateInformation">
+            <summary>
+            Gets or sets the rate at which the information icon flashes.
+            </summary>
+            <value>The rate, in milliseconds, at which the information icon should flash. The default is 250 milliseconds.</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value is less than zero. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkRateWarning">
+            <summary>
+            Gets or sets the rate at which the warning icon flashes.
+            </summary>
+            <value>The rate, in milliseconds, at which the warning icon should flash.
+            The default is 250 milliseconds.</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value is less than zero. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkStyle">
+            <summary>
+            Gets or sets a value indicating when the error icon flashes.
+            </summary>
+            <value>One of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values.
+            The default is <see cref="F:System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError"/>.</value>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The assigned value is not one of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkStyleInformation">
+            <summary>
+            Gets or sets a value indicating when the information icon flashes.
+            </summary>
+            <value>One of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values.
+            The default is <see cref="F:System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError"/>.</value>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The assigned value is not one of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.BlinkStyleWarning">
+            <summary>
+            Gets or sets a value indicating when the warning icon flashes.
+            </summary>
+            <value>One of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values. The default is <see cref="F:System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError"/>.</value>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The assigned value is not one of the <see cref="T:System.Windows.Forms.ErrorBlinkStyle"/> values. </exception>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.DataSource">
+            <summary>
+            Gets or sets the data source that the <see cref="T:System.Windows.Forms.ErrorProvider"></see> monitors.
+            </summary>
+            <value></value>
+            <value>A data source based on the <see cref="T:System.Collections.IList"></see> interface to be monitored for errors. Typically, this is a <see cref="T:System.Data.DataSet"></see> to be monitored for errors.</value>
+            <PermissionSet><IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/><IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/></PermissionSet>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.IconInformation">
+            <summary>
+            Gets or sets the icon information.
+            </summary>
+            <value>The icon information.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.IconWarning">
+            <summary>
+            Gets or sets the icon warning.
+            </summary>
+            <value>The icon warning.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.OffsetInformation">
+            <summary>
+            Gets or sets the offset information.
+            </summary>
+            <value>The offset information.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.OffsetWarning">
+            <summary>
+            Gets or sets the offset warning.
+            </summary>
+            <value>The offset warning.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.ShowInformation">
+            <summary>
+            Gets or sets a value indicating whether broken rules with severity information should be visible.
+            </summary>
+            <value><c>true</c> if information is visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.ShowWarning">
+            <summary>
+            Gets or sets a value indicating whether broken rules with severity Warning should be visible.
+            </summary>
+            <value><c>true</c> if Warning is visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ErrorWarnInfoProvider.ShowOnlyMostSevere">
+            <summary>
+            Gets or sets a value indicating whether show only most severe broken rules message.
+            </summary>
+            <value><c>true</c> if show only most severe; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:CslaContrib.Windows.ListSelectForm">
+            <summary>
+            As an alternative to ComboBox - use this form when there are more then 100 items in the list. 
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.ListSelectForm.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CslaContrib.Windows.ListSelectForm"/> class.
+            </summary>
+        </member>
+        <member name="F:CslaContrib.Windows.ListSelectForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.ListSelectForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.ListSelectForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.SelectedValue">
+            <summary>
+            Gets or sets the selected value.
+            </summary>
+            <value>The selected value.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.SelectedKey">
+            <summary>
+            Gets or sets the selected key.
+            </summary>
+            <value>The selected key.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.DisplayMember">
+            <summary>
+            Gets or sets the key field.
+            </summary>
+            <value>The key field.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.ValueMember">
+            <summary>
+            Gets or sets the value field.
+            </summary>
+            <value>The value field.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.InitialSearchString">
+            <summary>
+            Sets the initial search string.
+            </summary>
+            <value>The initial search string.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.Title">
+            <summary>
+            Sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.ListLabel">
+            <summary>
+            Sets the list label.
+            </summary>
+            <value>The list label.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.ListSelectForm.SourceList">
+            <summary>
+            Sets the source list.
+            </summary>
+            <value>The source list.</value>
+        </member>
+        <member name="T:CslaContrib.Windows.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.AboutBack">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.AboutPicture">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.InformationIco16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.progressbar_green">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.progresscircle_black">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.SplashPanel_PleaseWait">
+            <summary>
+              Looks up a localized string similar to Please wait.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.status_anim">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.Properties.Resources.WarningIco16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="T:CslaContrib.Windows.SmartDateTimePicker">
+            <summary>
+            Custom DateTime picker that understands additional commands.
+            Ex: td, +, -
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.SmartDateTimePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CslaContrib.Windows.SmartDateTimePicker"/> class.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.SmartDateTimePicker.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.SmartDateTimePicker.SmartDateTimePicker_Resize(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Resize event of the DateTimePicker control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.SmartDateTimePicker.UpdateMyTextBox">
+            <summary>
+            Formats the text box.
+            </summary>
+        </member>
+        <member name="P:CslaContrib.Windows.SmartDateTimePicker.Text">
+            <summary>
+            Gets or sets the text associated with this control.
+            </summary>
+            <value></value>
+            <returns>
+            A string that represents the text associated with this control.
+            </returns>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/>
+            	<IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            </PermissionSet>
+            
+        </member>
+        <member name="P:CslaContrib.Windows.SmartDateTimePicker.Value">
+            <summary>
+            Gets or sets the date/time value assigned to the control.
+            </summary>
+            <value></value>
+            <returns>The <see cref="T:System.DateTime"/> value assign to the control.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">The set value is less than <see cref="P:System.Windows.Forms.DateTimePicker.MinDate"/> or more than <see cref="P:System.Windows.Forms.DateTimePicker.MaxDate"/>.</exception>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/>
+            	<IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            </PermissionSet>
+        </member>
+        <member name="P:CslaContrib.Windows.SmartDateTimePicker.Format">
+            <summary>
+            Gets or sets the format of the date and time displayed in the control.
+            </summary>
+            <value></value>
+            <returns>
+            One of the <see cref="T:System.Windows.Forms.DateTimePickerFormat"/> values. The default is <see cref="F:System.Windows.Forms.DateTimePickerFormat.Long"/>.
+            </returns>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">
+            The value assigned is not one of the <see cref="T:System.Windows.Forms.DateTimePickerFormat"/> values.
+            </exception>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/>
+            	<IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            </PermissionSet>
+        </member>
+        <member name="P:CslaContrib.Windows.SmartDateTimePicker.CustomFormat">
+            <summary>
+            Gets or sets the custom date/time format string.
+            </summary>
+            <value></value>
+            <returns>
+            A string that represents the custom date/time format. The default is null.
+            </returns>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/>
+            	<IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+            </PermissionSet>
+        </member>
+        <member name="T:CslaContrib.Windows.SplashPanelLayout">
+            <summary>
+            Layout of the Splash Panel
+            </summary>
+        </member>
+        <member name="F:CslaContrib.Windows.SplashPanelLayout.Bar">
+            <summary>
+            Green horizontal bar
+            </summary>
+        </member>
+        <member name="F:CslaContrib.Windows.SplashPanelLayout.Circle">
+            <summary>
+            Black and gray circle
+            </summary>
+        </member>
+        <member name="T:CslaContrib.Windows.SplashPanel">
+            <summary>
+            Use this control to give users feedback under heavy workload.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.SplashPanel.Show(System.Windows.Forms.Form)">
+            <summary>
+            Shows the splash panel on the form.
+            </summary>
+            <param name="form">The form.</param>
+            <remarks>
+            Default text = "Please wait..." / "Vennligst vent..."
+            Default SplashPanelLayout = Circle
+            </remarks> 
+        </member>
+        <member name="M:CslaContrib.Windows.SplashPanel.Show(System.Windows.Forms.Form,System.String)">
+            <summary>
+            Shows the splash panel on the form.
+            </summary>
+            <param name="form">The form.</param>
+            <param name="text">The text.</param>
+            <remarks>
+            Default SplashPanelLayout = Circle
+            </remarks> 
+        </member>
+        <member name="M:CslaContrib.Windows.SplashPanel.Show(System.Windows.Forms.Form,System.String,CslaContrib.Windows.SplashPanelLayout)">
+            <summary>
+            Shows the splash panel on the form.
+            </summary>
+            <param name="form">The form.</param>
+            <param name="text">The text.</param>
+            <param name="splashPanelLayout">The splash panel layout.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.SplashPanel.SetStatus(System.String)">
+            <summary>
+            Sets the status.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.SplashPanel.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="T:CslaContrib.Windows.StatusStripExtender">
+            <summary>
+            Add link to StatusStrip with Status and Animation.
+            <example>
+            1) Add a StatusStrip to the form and add 2 ToolStripStatusLabels.
+            2) Add the StatusStripExtender to the form.
+            3) Set statusStripExtender properties on StatusStrip
+                   StatusLabel  to toolStripStatusLabel1
+               and AnimationLabel to toolStripStatusLabel2
+            4) Set status text with 
+                    statusStripExtender1.SetStatus
+                    statusStripExtender1.SetStatusStatic   
+                    statusStripExtender1.SetStatusWaiting
+                    statusStripExtender1.SetStatusWithDuration   
+            </example>
+            
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CslaContrib.Windows.StatusStripExtender"/> class.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatus">
+            <summary>
+            Sets the statu to defaultstatus and stop progress indicator from running.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatus(System.String)">
+            <summary>
+            Set status message and stops the progress indicator from running
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatus(System.String,System.Int32)">
+            <summary>
+            Set status message and stops the progress indicator from running
+            </summary>
+            <param name="text">The text.</param>
+            <param name="durationMilliseconds">The duration milliseconds.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusStatic">
+            <summary>
+            Sets the Status and keep it until new text.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusStatic(System.String)">
+            <summary>
+            Sets the Status and keep it until new text.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusWithDuration(System.String,System.Int32)">
+            <summary>
+            Sets the duration of the status with.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="duration">The duration.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusText(System.String,System.Object[])">
+            <summary>
+            Updates the status bar with the specified message. The message is reset after a few seconds.
+            Progress indicator is NOT shown
+            </summary>
+            <param name="message">The message.</param>
+            <param name="formatParams">Formatting parameters</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusWaiting(System.String,System.Object[])">
+            <summary>
+            Updates the status bar with the specified message. The message is not reset until "SetStatus()" is called
+            Progress indicator IS shown
+            Large IS shown
+            </summary>
+            <param name="message">The message.</param>
+            <param name="formatParams">The format params.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusWaiting(System.String,System.Boolean,System.Object[])">
+            <summary>
+            Updates the status bar with the specified message. The message is not reset until "SetStatus()" is called
+            Progress indicator IS shown
+            Large progress indicator is displayed depending on "displayLargeProgressIndicator"
+            </summary>
+            <param name="message">The message.</param>
+            <param name="displayLargeProgressindicator">if set to <c>true</c> [display large progressindicator].</param>
+            <param name="formatParams">Formatting parameters</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.UpdateStatusStrip(System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Updates the status strip.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="showProgressIndicator">if set to <c>true</c> [show progress indicator].</param>
+            <param name="showLargeProgressIndicator">if set to <c>true</c> [show large progress indicator].</param>
+            <param name="durationMilliseconds"></param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusTextPrivate(System.String)">
+            <summary>
+            Sets the Status.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusTextPrivate(System.String,System.Int32)">
+            <summary>
+            Sets the Status.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="durationMilliseconds">The duration milliseconds.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusTextStaticPrivate(System.String)">
+            <summary>
+            Sets the Status and keep it until new text.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusWithDurationPrivate(System.String,System.Int32)">
+            <summary>
+            Sets the Status with delay.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="durationMilliseconds">The duration in milliseconds.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.SetStatusToDefaultPrivate">
+            <summary>
+            Sets the status to Default.
+            </summary>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.HideTemporaryWaitIndicator(System.Object,System.EventArgs)">
+            <summary>
+            Hides the temporary wait indicator.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CslaContrib.Windows.StatusStripExtender.TimerShowBusyIndicator(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Tick event of the _progressIndicatorTimer
+            Displays a large progressindicator
+            </summary>
+            <param name="sender">The timer that triggered the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.StatusControl">
+            <summary>
+            Gets or sets the ToolStripStatusLabel for Status.
+            </summary>
+            <value>The status control.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.StatusDefault">
+            <summary>
+            Gets or sets the default Status.
+            </summary>
+            <value>The status default text.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.MaximumToolTipLines">
+            <summary>
+            Gets or sets the maximum Tool Tip Lines to show (1-10, default 5).
+            </summary>
+            <value>The maximum number of Tool Tip Lines.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.Delay">
+            <summary>
+            Gets or sets the delay.
+            </summary>
+            <value>The delay.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.AnimationControl">
+            <summary>
+            Gets or sets the Animation control.
+            </summary>
+            <value>The animation control.</value>
+        </member>
+        <member name="P:CslaContrib.Windows.StatusStripExtender.AnimationVisible">
+            <summary>
+            Gets or sets a value indicating whether the Animation control is visible].
+            </summary>
+            <value><c>true</c> if the Animation control is visible; otherwise, <c>false</c>.</value>        
+        </member>
+    </members>
+</doc>

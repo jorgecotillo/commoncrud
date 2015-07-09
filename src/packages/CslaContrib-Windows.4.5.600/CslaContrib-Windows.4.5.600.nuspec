@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>CslaContrib-Windows</id>
+    <version>4.5.600</version>
+    <title>CSLA .NET Contrib - Windows</title>
+    <authors>CslaContrib</authors>
+    <owners>CslaContrib</owners>
+    <licenseUrl>http://cslacontrib.codeplex.com/license</licenseUrl>
+    <projectUrl>http://cslacontrib.codeplex.com/</projectUrl>
+    <iconUrl>http://www.lhotka.net/images/csla.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Additional controls to support the creation of CSLA. NET applications for Windows Forms.
+
+CSLA .NET is an application development framework that reduces the cost of building and maintaining applications. The framework enables developers to build an object-oriented business layer for their application that encapsulates all business, authorization and validation logic for the application.</description>
+    <summary>Additional controls to support the creation of CSLA. NET applications for Windows Forms.</summary>
+    <language>en-US</language>
+    <tags>CSLA CslaContrib WindowsForms WinForms UI</tags>
+    <dependencies>
+      <dependency id="CSLA-Core" version="4.5.0" />
+    </dependencies>
+  </metadata>
+</package>

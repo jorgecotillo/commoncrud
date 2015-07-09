@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.jc.services", "com.jc.services\com.jc.services.csproj", "{7681A8F6-A0BF-40F0-A557-2C5772644E8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.jc.tests", "com.jc.tests\com.jc.tests.csproj", "{EB03E90B-701E-4F45-85D5-001D7A74DC1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8816E159-4615-42B2-BD61-2194CEC6890C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7681A8F6-A0BF-40F0-A557-2C5772644E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7681A8F6-A0BF-40F0-A557-2C5772644E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7681A8F6-A0BF-40F0-A557-2C5772644E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7681A8F6-A0BF-40F0-A557-2C5772644E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB03E90B-701E-4F45-85D5-001D7A74DC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB03E90B-701E-4F45-85D5-001D7A74DC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB03E90B-701E-4F45-85D5-001D7A74DC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB03E90B-701E-4F45-85D5-001D7A74DC1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
