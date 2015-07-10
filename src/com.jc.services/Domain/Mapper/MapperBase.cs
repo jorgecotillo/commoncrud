@@ -15,6 +15,10 @@ namespace com.jc.services.Domain.Mapper
     {
         public virtual TEntity Map(IDataRecord record)
         {
+            TEntity entity = new TEntity();
+
+            //Do reflection to get entity values
+
             return new TEntity();
         }
 
@@ -40,7 +44,8 @@ namespace com.jc.services.Domain.Mapper
         {
             TEntity entity = new TEntity();
 
-            
+            //Do reflection to get entity values
+
             return new TEntity();
         }
 
