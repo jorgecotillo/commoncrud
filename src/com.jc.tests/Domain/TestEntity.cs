@@ -24,12 +24,12 @@ namespace com.jc.tests.Domain
         //    return entity;
         //}
 
-        public override TEntity ToEntity<TEntity>(System.Data.IDataReader reader)
-        {
-            TestEntity entity = new TestEntity();
-            entity.Id = reader.GetInt32(reader.GetOrdinal("Id"));
-            entity.Description = reader.GetString(reader.GetOrdinal("Description"));
-            return entity as TEntity;
-        }
+        //public override TEntity ToEntity<TEntity>(System.Data.IDataReader reader)
+        //{
+        //    TestEntity entity = new TestEntity();
+        //    entity.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+        //    entity.Description = reader.GetString(reader.GetOrdinal("Description"));
+        //    return entity as TEntity;
+        //}
     }
 }

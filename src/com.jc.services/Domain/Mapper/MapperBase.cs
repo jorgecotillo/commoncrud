@@ -13,14 +13,7 @@ namespace com.jc.services.Domain.Mapper
     public abstract class MapperBase<TEntity>
         where TEntity : BaseEntity, new()
     {
-        public virtual TEntity Map(IDataRecord record)
-        {
-            TEntity entity = new TEntity();
-
-            //Do reflection to get entity values
-
-            return new TEntity();
-        }
+        public abstract TEntity Map(IDataRecord record);
 
         public IList<TEntity> MapAll(IDataReader reader)
         {
@@ -40,14 +33,7 @@ namespace com.jc.services.Domain.Mapper
             return collection;
         }
 
-        public virtual TEntity Map(XmlReader record)
-        {
-            TEntity entity = new TEntity();
-
-            //Do reflection to get entity values
-
-            return new TEntity();
-        }
+        public abstract TEntity Map(XmlReader record);
 
         public IList<TEntity> MapAll(XmlReader xdoc)
         {   
@@ -55,5 +41,23 @@ namespace com.jc.services.Domain.Mapper
            
             return collection;
         }
+
+        public IDictionary<string, object> ReadXmlValues(XmlReader reader)
+        {
+            var fields = new Dictionary<string, object>();
+            string xmlValue = string.Empty;
+            while (reader.Read())
+            {
+                if (reader.IsStartElement() &&
+                   !string.IsNullOrEmpty(reader.Name) &&
+                   reader.Name.Equals("results", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    fields.Add(reader.Name, reader.GetValueAsync());
+                }
+            }
+            return fields;
+        }
+
+        public abstract TEntity Map(object generalObject);
     }
 }

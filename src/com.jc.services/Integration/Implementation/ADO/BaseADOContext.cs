@@ -83,7 +83,8 @@ namespace com.jc.services.Integration.Implementation.ADO
                     using (DbDataReader reader = await command.ExecuteReaderAsync(behavior))
                     {
                         while (reader.Read())
-                            listOfEntities.Add(entity.ToEntity<TEntity>(reader));
+                            //listOfEntities.Add(entity.ToEntity<TEntity>(reader));
+                            listOfEntities.Add(entity.GetMapper(entity).Map(reader));
                     }
                 }
             }

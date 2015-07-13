@@ -81,6 +81,7 @@
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Enum\ADOEnum.cs" />
     <Compile Include="Domain\Extensions\BaseEntityExtension.cs" />
+    <Compile Include="Domain\Mapper\CommonMapper.cs" />
     <Compile Include="Domain\Mapper\MapperBase.cs" />
     <Compile Include="Integration\Implementation\ADO\ADORepository.cs" />
     <Compile Include="Integration\Implementation\ADO\BaseADOContext.cs" />

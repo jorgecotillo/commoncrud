@@ -1,4 +1,5 @@
 ﻿using com.jc.providers.CustomAttributes;
+using com.jc.services.Domain.Mapper;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -85,63 +86,11 @@ namespace com.jc.services.Domain
             return !(x == y);
         }
 
-        public virtual TEntity ToEntity<TEntity>(object sourceObject)
-            where TEntity : BaseEntity, new()
+        public virtual MapperBase<TEntity> GetMapper<TEntity>(TEntity entity)
+            where TEntity : BaseEntity, new ()
         {
-            try
-            {
-                TEntity receiverObject = new TEntity();
-                foreach (PropertyInfo prop in sourceObject.GetType().GetProperties())
-                {
-                    object propValue = prop.GetValue(sourceObject);
-                    PropertyInfo genericPropertyInfo =
-                                                        receiverObject
-                                                            .GetType()
-                                                            .GetProperties()
-                                                            .Where(genProperty => genProperty.Name == prop.Name)
-                                                            .FirstOrDefault();
-                    genericPropertyInfo.SetValue(receiverObject, propValue);
-                }
-                return receiverObject;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public virtual TEntity ToEntity<TEntity>(IDataReader reader)
-            where TEntity : BaseEntity, new()
-        {
-            TEntity newEntity = new TEntity();
-            try
-            {
-                PropertyInfo[] properties = newEntity.GetType().GetProperties();
-                int ordinal = 0;
-                object val = new object();
-                foreach (PropertyInfo property in properties)
-                {
-                    ColumnMappingAttribute attribute = property.GetCustomAttribute<ColumnMappingAttribute>();
-                    if (attribute != null)
-                    {
-                        ordinal = reader.GetOrdinal(attribute.ColumnName);
-                        val = reader.GetValue(ordinal);
-                        property.SetValue(newEntity, val);
-                    }
-                    else
-                    {
-                        ordinal = reader.GetOrdinal(property.Name);
-                        val = reader.GetValue(ordinal);
-                        property.SetValue(newEntity, val);
-                    }
-                }
-                return newEntity;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            MapperBase<TEntity> commonMapper = new CommonMapper<TEntity>();
+            return commonMapper;
         }
     }
 }
