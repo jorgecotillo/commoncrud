@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="com.jc.providers.CustomAttributes.ColumnMappingAttribute">
-    <Position X="12.5" Y="5.75" Width="2.25" />
+    <Position X="12.5" Y="6.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CustomAttributes\ColumnMappingAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="com.jc.providers.CustomAttributes.DatabaseMappingAttribute">
-    <Position X="12.5" Y="8.25" Width="2.25" />
+    <Position X="12.5" Y="9" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAgAQIAAIA=</HashCode>
       <FileName>CustomAttributes\DatabaseMappingAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="com.jc.providers.CustomAttributes.PrimaryKeyAttribute">
-    <Position X="15" Y="5.75" Width="1.75" />
+    <Position X="15" Y="6.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CustomAttributes\PrimaryKeyAttribute.cs</FileName>
@@ -63,7 +63,7 @@
   <Class Name="com.jc.services.Business.Common.Helpers">
     <Position X="12.5" Y="4" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgQBAAAAAAAAAAAAAAAAAAUAAAAAAA=</HashCode>
+      <HashCode>AAAAAAQAAAAAAAgQBAAAAAAAAAAAAAAAAIAUAAAAAAA=</HashCode>
       <FileName>Business\Common\Helpers.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -142,7 +142,7 @@
     </TypeIdentifier>
   </Interface>
   <Enum Name="com.jc.services.Domain.Enum.ADOEnum">
-    <Position X="15" Y="7" Width="1.75" />
+    <Position X="15" Y="7.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>Domain\Enum\ADOEnum.cs</FileName>

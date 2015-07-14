@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Domain\Mappings\TestEntityMapping.cs" />
     <Compile Include="Domain\TestEntity.cs" />
-    <Compile Include="Integration\Implementation\EFContext.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

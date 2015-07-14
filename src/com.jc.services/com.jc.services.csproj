@@ -83,7 +83,6 @@
     <Compile Include="Domain\Mapper\MapperBase.cs" />
     <Compile Include="Integration\Implementation\ADO\ADORepository.cs" />
     <Compile Include="Integration\Implementation\ADO\BaseADOContext.cs" />
-    <Compile Include="Integration\Implementation\NoSQL\MongoContext.cs" />
     <Compile Include="Integration\Implementation\ADO\MySQLContext.cs" />
     <Compile Include="Integration\Implementation\ADO\ODPContext.cs" />
     <Compile Include="Integration\Implementation\ADO\SQLContext.cs" />
