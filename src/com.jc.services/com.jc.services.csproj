@@ -87,7 +87,7 @@
     <Compile Include="Integration\Implementation\ADO\MySQLContext.cs" />
     <Compile Include="Integration\Implementation\ADO\ODPContext.cs" />
     <Compile Include="Integration\Implementation\ADO\SQLContext.cs" />
-    <Compile Include="Integration\Implementation\Common\Helper.cs" />
+    <Compile Include="Business\Common\Helpers.cs" />
     <Compile Include="Integration\Implementation\EF\EFContext.cs" />
     <Compile Include="Integration\Implementation\EF\EFRepository.cs" />
     <Compile Include="Integration\Interfaces\ADO\IADOContext.cs" />

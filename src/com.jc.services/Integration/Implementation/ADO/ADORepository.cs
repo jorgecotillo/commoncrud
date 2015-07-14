@@ -1,7 +1,6 @@
 ﻿using com.jc.providers.CustomAttributes;
 using com.jc.services.Domain;
 using com.jc.services.Domain.Enum;
-using com.jc.services.Integration.Implementation.Common;
 using com.jc.services.Integration.Interfaces;
 using com.jc.services.Integration.Interfaces.ADO;
 using System;
@@ -11,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Data.Common;
+using com.jc.services.Business.Common;
 
 namespace com.jc.services.Integration.Implementation.ADO
 {
@@ -25,8 +25,8 @@ namespace com.jc.services.Integration.Implementation.ADO
 
         public async Task<IList<TEntity>> GetAll(int page = 0, int pageSize = Int32.MaxValue, bool active = true)
         {
-            string selectSP = GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Select);
-            string idColumnName = Helper.GetPropertyNameFromAttribute<TEntity, PrimaryKeyAttribute>();
+            string selectSP = Helpers.GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Select);
+            string idColumnName = Helpers.GetColumnMappingNameFromPrimaryKeyAttribute<TEntity>();
 
             List<KeyValuePair<string, object>> keyValuePairList = new List<KeyValuePair<string, object>>();
             //TODO: Modify 0 for 'ALL' or something different so it can allow the sproc to retrieve all the rows
@@ -41,8 +41,8 @@ namespace com.jc.services.Integration.Implementation.ADO
         {
             try
             {
-                string selectSP = GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Select);
-                string idColumnName = Helper.GetPropertyNameFromAttribute<TEntity, PrimaryKeyAttribute>();
+                string selectSP = Helpers.GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Select);
+                string idColumnName = Helpers.GetColumnMappingNameFromPrimaryKeyAttribute<TEntity>();
 
                 List<KeyValuePair<string, object>> keyValuePairList = new List<KeyValuePair<string, object>>();
                 keyValuePairList.Add(new KeyValuePair<string, object>(idColumnName, id));
@@ -59,20 +59,20 @@ namespace com.jc.services.Integration.Implementation.ADO
 
         public async Task Insert(TEntity entity)
         {
-            string insertSP = GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Insert);
+            string insertSP = Helpers.GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Insert);
             await InsertOrUpdate(entity, insertSP, ADOEnum.Insert);
         }
 
         public async Task Update(TEntity entity)
         {
-            string updateSP = GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Update);
+            string updateSP = Helpers.GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Update);
             await InsertOrUpdate(entity, updateSP, ADOEnum.Update);
         }
 
         public async Task Delete(TEntity entity)
         {
-            string deleteSP = GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Delete);
-            string idColumnName = Helper.GetPropertyNameFromAttribute<TEntity, PrimaryKeyAttribute>();
+            string deleteSP = Helpers.GetADOAttributeValue<TEntity, DatabaseMappingAttribute>(ADOEnum.Delete);
+            string idColumnName = Helpers.GetColumnMappingNameFromPrimaryKeyAttribute<TEntity>();
 
             List<KeyValuePair<string, object>> keyValuePairList = new List<KeyValuePair<string, object>>();
             //TODO: Modify 0 for 'ALL' or something different so it can allow the sproc to retrieve all the rows
@@ -83,36 +83,8 @@ namespace com.jc.services.Integration.Implementation.ADO
 
         private async Task InsertOrUpdate(TEntity entity, string storeProcedure, ADOEnum adoEnum)
         {
-            List<KeyValuePair<string, object>> keyValuePairList = Helper.GetPropertyKeyAndValue<TEntity>(entity);
+            List<KeyValuePair<string, object>> keyValuePairList = Helpers.GetPropertyNameAndValue<TEntity>(entity);
             await _context.PersistEntity<TEntity>(storeProcedure, keyValuePairList);
-        }
-
-        private static string GetADOAttributeValue<TClass, TAttribute>(ADOEnum adoEnum)
-            where TAttribute : Attribute
-        {
-            // Using reflection.
-            //System.Attribute[] attrs = System.Attribute.GetCustomAttributes(t);  // Reflection. 
-            IEnumerable<TAttribute> attrs = typeof(TClass).GetCustomAttributes<TAttribute>();
-
-            // Getting output. 
-            foreach (Attribute attr in attrs)
-            {
-                DatabaseMappingAttribute a = (DatabaseMappingAttribute)attr;
-                switch (adoEnum)
-                {
-                    case ADOEnum.Select:
-                        return a.SelectSP;
-                    case ADOEnum.Insert:
-                        return a.InsertSP;
-                    case ADOEnum.Update:
-                        return a.UpdateSP;
-                    case ADOEnum.Delete:
-                        return a.DeleteSP;
-                    default:
-                        return string.Empty;
-                }
-            }
-            return string.Empty;
         }
 
         public IADOContext Context

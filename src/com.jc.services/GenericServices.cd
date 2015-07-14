@@ -60,11 +60,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.jc.services.Integration.Implementation.Common.Helper">
+  <Class Name="com.jc.services.Business.Common.Helpers">
     <Position X="12.5" Y="4" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAUAAAAAAA=</HashCode>
-      <FileName>Integration\Implementation\Common\Helper.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAgQBAAAAAAAAAAAAAAAAAAUAAAAAAA=</HashCode>
+      <FileName>Business\Common\Helpers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="com.jc.services.Integration.Implementation.EF.EFContext">
@@ -86,7 +86,7 @@
   <Class Name="com.jc.services.Integration.Implementation.ADO.ADORepository&lt;TEntity&gt;">
     <Position X="7.25" Y="7.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAQAAEAQAgAABAgAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <HashCode>AAQAAEAQAgAABAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Integration\Implementation\ADO\ADORepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
