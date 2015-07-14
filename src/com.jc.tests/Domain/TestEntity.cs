@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace com.jc.tests.Domain
 {
-    [DatabaseMapping("TestTable", SelectSP = "dbo.SelectTestTable")]
+    [DatabaseMapping("TestTable", SelectSP = "SelectTestTable")]
     public class TestEntity : BaseEntity
     {
         [ColumnMapping("Description")]

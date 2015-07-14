@@ -27,7 +27,7 @@ namespace com.jc.services.Integration.Implementation.ADO
             return connection;
         }
 
-        public override void AddCommandParameters(List<KeyValuePair<string, object>> parameters, DbCommand adoCommand)
+        public override void AddCommandParameters(List<KeyValuePair<string, object>> parameters, DbCommand adoCommand, bool addDefaultRefCursor = false)
         {
             // configure the parameters
             foreach (KeyValuePair<string, object> keyValue in parameters)

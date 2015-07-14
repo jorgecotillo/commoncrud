@@ -1,4 +1,5 @@
 ﻿using com.jc.providers.CustomAttributes;
+using com.jc.services.Integration.Implementation.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,17 @@ namespace com.jc.services.Domain.Mapper
                     {
                         ordinal = record.GetOrdinal(attribute.ColumnName);
                         val = record.GetValue(ordinal);
+
+                        val = Convert.ChangeType(val, property.PropertyType);
+
                         property.SetValue(newEntity, val);
                     }
-                    else
+                    /*else
                     {
                         ordinal = record.GetOrdinal(property.Name);
                         val = record.GetValue(ordinal);
                         property.SetValue(newEntity, val);
-                    }
+                    }*/
                 }
                 return newEntity;
             }

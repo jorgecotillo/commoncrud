@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.jc.services.Domain.Extensions;
+using Oracle.DataAccess.Client;
 
 namespace com.jc.services.Integration.Implementation.ADO
 {
@@ -32,30 +33,34 @@ namespace com.jc.services.Integration.Implementation.ADO
 
         public abstract void AddCommandParameters(
             List<KeyValuePair<string, object>> parameters,
-            DbCommand adoCommand);
+            DbCommand adoCommand,
+            bool addDefaultRefCursor = false);
 
         public async Task<IList<TEntity>> GetMultipleEntities<TEntity>(
             string storeProcedureName, 
-            List<KeyValuePair<string, object>> parameters) 
+            List<KeyValuePair<string, object>> parameters,
+            bool addDefaultRefCursor = false) 
             where TEntity : BaseEntity, new()
         {
-            return await GetMultipleEntities<TEntity>(storeProcedureName, parameters, CommandBehavior.Default);
+            return await GetMultipleEntities<TEntity>(storeProcedureName, parameters, CommandBehavior.Default, addDefaultRefCursor);
         }
 
         public async Task<TEntity> GetSingleEntity<TEntity>(
             string storeProcedureName, 
-            List<KeyValuePair<string, object>> parameters) 
+            List<KeyValuePair<string, object>> parameters,
+            bool addDefaultRefCursor = false) 
             where TEntity : BaseEntity, new()
         {
             IList<TEntity> listOfEntities =
-               await GetMultipleEntities<TEntity>(storeProcedureName, parameters, CommandBehavior.SingleRow);
+               await GetMultipleEntities<TEntity>(storeProcedureName, parameters, CommandBehavior.SingleRow, addDefaultRefCursor);
             return listOfEntities.FirstOrDefault();
         }
 
         private async Task<IList<TEntity>> GetMultipleEntities<TEntity>(
             string storeProcedureName,
             List<KeyValuePair<string, object>> parameters,
-            CommandBehavior behavior)
+            CommandBehavior behavior,
+            bool addDefaultRefCursor)
             where TEntity : BaseEntity, new()
         {
             IList<TEntity> listOfEntities = new List<TEntity>();
@@ -70,8 +75,15 @@ namespace com.jc.services.Integration.Implementation.ADO
                     // set the command type
                     command.CommandType = CommandType.StoredProcedure;
 
+                    //TODO: Verify if MySQL needs a ref cursor too.
+                    //setting false for any type that is not an Oracle Command
+                    if (command as OracleCommand == null)
+                        addDefaultRefCursor = false;
+                    else
+                        addDefaultRefCursor = true;
+                    
                     // configure the parameters
-                    AddCommandParameters(parameters, command);
+                    AddCommandParameters(parameters, command, addDefaultRefCursor);
 
                     // open the connection
                     adoConnection.Open();
@@ -98,7 +110,8 @@ namespace com.jc.services.Integration.Implementation.ADO
 
         public async Task<TValueType> GetSingleValue<TValueType>(
             string storeProcedureName, 
-            List<KeyValuePair<string, object>> parameters)
+            List<KeyValuePair<string, object>> parameters,
+            bool addDefaultRefCursor = false)
         {
             try
             {

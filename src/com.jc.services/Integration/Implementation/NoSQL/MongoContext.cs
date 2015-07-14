@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace com.jc.services.Integration.Implementation.NoSQL
 {
-    public class MongoContext : IADOContext
+    /*public class MongoContext : IADOContext
     {
         public Task<TValueType> GetSingleValue<TValueType>(string storeProcedureName, List<KeyValuePair<string, object>> parameters)
         {
@@ -31,5 +31,5 @@ namespace com.jc.services.Integration.Implementation.NoSQL
         {
             throw new NotImplementedException();
         }
-    }
+    }*/
 }

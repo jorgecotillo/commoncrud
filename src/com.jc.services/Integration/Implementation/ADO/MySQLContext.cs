@@ -15,7 +15,7 @@ namespace com.jc.services.Integration.Implementation.ADO
         private string _connectionString = string.Empty;
         public MySQLContext(string connectionString)
         {
-            connectionString = _connectionString;
+            _connectionString = connectionString;
         }
         public override DbConnection GetADOConnection()
         {
@@ -32,7 +32,7 @@ namespace com.jc.services.Integration.Implementation.ADO
             return command;
         }
 
-        public override void AddCommandParameters(List<KeyValuePair<string, object>> parameters, DbCommand adoCommand)
+        public override void AddCommandParameters(List<KeyValuePair<string, object>> parameters, DbCommand adoCommand, bool addDefaultRefCursor = false)
         {
             // configure the parameters
             foreach (KeyValuePair<string, object> keyValue in parameters)

@@ -19,12 +19,26 @@ namespace com.jc.tests
     public class UnitTest1
     {
         [TestMethod]
-        public void ADO_Test_Select()
+        public void SQL_Test_Select()
+        {
+            //Setup a mock of repository
+            IRepository<TestEntity, IADOContext> mockAdoSqlRepository =
+               new ADORepository<TestEntity>
+               (new SQLContext(@"Data Source=.\sqlexpress;Initial Catalog=ShowcaseDB;Integrated Security=False;User ID=nop_user_dev;Password=C0ll@borativ3;Persist Security Info=False;MultipleActiveResultSets=True"));
+
+            ITestEntityService service = new ADOTestEntityService(mockAdoSqlRepository);
+            var x = service.GetById(1).Result;
+            Console.WriteLine(x.Id);
+            Console.WriteLine(x.Description);
+        }
+
+        [TestMethod]
+        public void Oracle_Test_Select()
          {
             //Setup a mock of repository
              IRepository<TestEntity, IADOContext> mockAdoSqlRepository = 
                 new ADORepository<TestEntity>
-                (new SQLContext(@"Data Source=.\sqlexpress;Initial Catalog=ShowcaseDB;Integrated Security=False;User ID=nop_user_dev;Password=C0ll@borativ3;Persist Security Info=False;MultipleActiveResultSets=True"));
+                (new ODPContext("User Id=flcapp;Password=flcapp;Data Source=xe"));
 
             ITestEntityService service = new ADOTestEntityService(mockAdoSqlRepository);
             var x = service.GetById(1).Result;
