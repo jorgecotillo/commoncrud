@@ -16,5 +16,6 @@ namespace com.jc.services.Integration.Interfaces
         Task Update(TEntity entity);
         Task Delete(TEntity entity);
         TContext Context { get; }
+        Task Commit();
     }
 }

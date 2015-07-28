@@ -91,5 +91,11 @@ namespace com.jc.services.Integration.Implementation.ADO
         {
             get { return _context; }
         }
+
+
+        public Task Commit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace com.jc.tests
             //Setup a mock of repository
              IRepository<TestEntity, IADOContext> mockAdoSqlRepository = 
                 new ADORepository<TestEntity>
-                (new ODPContext("User Id=flcapp;Password=flcapp;Data Source=xe"));
+                (new ODPContext("Data Source=localhost:1521/XE;User ID=FLCAPP;Password=flcapp"));
 
             ITestEntityService service = new ADOTestEntityService(mockAdoSqlRepository);
             var x = service.GetById(1).Result;
@@ -58,6 +58,67 @@ namespace com.jc.tests
             var x = service.GetById(1).Result;
             Console.WriteLine(x.Id);
             Console.WriteLine(x.Description);
+        }
+
+        [TestMethod]
+        public void EF_Oracle_Test_Select()
+        {
+            //Setup a mock of repository
+            IRepository<TestEntity, IQueryable<TestEntity>> mockEfSqlRepository =
+                new EFRepository<TestEntity>
+                (new EFContext("Data Source=localhost:1521/XE;User ID=FLCAPP;Password=flcapp"));
+
+            ITestEntityService service = new EFTestEntityService(mockEfSqlRepository);
+            var x = service.GetById(1).Result;
+            Console.WriteLine(x.Id);
+            Console.WriteLine(x.Description);
+        }
+
+        [TestMethod]
+        public void EF_Oracle_Test_MultipleStatements()
+        {
+            //Setup a mock of repository
+            IRepository<TestEntity, IQueryable<TestEntity>> mockEfSqlRepository =
+                new EFRepository<TestEntity>
+                (new EFContext("OracleHR"));
+
+            ITestEntityService service = new EFTestEntityService(mockEfSqlRepository);
+            TestEntity x = service.GetById(1).Result;
+
+            if (x != null)
+            {
+                x.Description = "Description modified";
+                Console.WriteLine(x.Id);
+                Console.WriteLine(x.Description);
+            }
+
+            List<TestEntity> lst = new List<TestEntity>();
+            for (int i = 1; i < 11; i++)
+            {
+                TestEntity newEntity = new TestEntity() { Description = "I am a new entity " + i.ToString() };
+                lst.Add(newEntity);
+            }
+
+            foreach (var item in lst)
+            {
+                service.Save(item);
+            }
+
+            var lst2 = service.GetAll(page: 0, pageSize: 5).Result;
+
+            foreach (var item2 in lst2)
+            {
+                item2.Description = "Modified at : " + DateTime.Now.ToLongTimeString();
+            }
+
+            service.Commit();
+            
+
+            foreach (var newEntity in lst)
+            {
+                Console.WriteLine(newEntity.Id);
+                Console.WriteLine(newEntity.Description);
+            }
         }
         
         private interface ITestEntityService : ICRUDCommonService<TestEntity>

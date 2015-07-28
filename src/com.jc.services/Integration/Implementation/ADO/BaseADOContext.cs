@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.jc.services.Domain.Extensions;
-using Oracle.DataAccess.Client;
+using Oracle.ManagedDataAccess.Client;
 
 namespace com.jc.services.Integration.Implementation.ADO
 {

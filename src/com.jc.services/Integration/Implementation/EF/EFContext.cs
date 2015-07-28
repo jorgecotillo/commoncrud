@@ -12,6 +12,8 @@ using System.Data.Common;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using Oracle.ManagedDataAccess.Client;
+using System.Configuration;
 
 namespace com.jc.services.Integration.Implementation.EF
 {
@@ -22,6 +24,7 @@ namespace com.jc.services.Integration.Implementation.EF
 
         }
         public EFContext(string nameOrConnectionString)
+            //: base(new OracleConnection(nameOrConnectionString), true)
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
@@ -46,10 +49,10 @@ namespace com.jc.services.Integration.Implementation.EF
             //...or do it manually below. For example,
             //modelBuilder.Configurations.Add(new LanguageMap());
 
-
+            modelBuilder.HasDefaultSchema("FLCAPP");
 
             base.OnModelCreating(modelBuilder);
-        }
+            }
 
         private IEnumerable<Type> GetEFMappingTypesToRegister()
         {
@@ -402,6 +405,12 @@ namespace com.jc.services.Integration.Implementation.EF
             }
             //If we get to here means that there was no result
             return null;
+        }
+
+
+        public void ExecuteManuscriptDoiBulkUpload(DataTable dataTable)
+        {
+            throw new NotImplementedException();
         }
     }
 }

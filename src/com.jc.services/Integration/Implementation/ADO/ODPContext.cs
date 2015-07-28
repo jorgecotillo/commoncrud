@@ -1,5 +1,5 @@
 ﻿using com.jc.services.Integration.Interfaces.ADO;
-using Oracle.DataAccess.Client;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;

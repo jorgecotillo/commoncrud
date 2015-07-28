@@ -14,5 +14,6 @@ namespace com.jc.services.Business.Interfaces
         Task<IList<TEntity>> GetAll(int page = 0, int pageSize = Int32.MaxValue, bool active = true);
         Task Save(TEntity entity);
         Task Delete(TEntity entity, bool softDelete = true);
+        Task Commit();
     }
 }

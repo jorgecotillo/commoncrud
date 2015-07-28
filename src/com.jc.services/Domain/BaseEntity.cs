@@ -25,7 +25,7 @@ namespace com.jc.services.Domain
         public int Id { get; set; }
         
         [JsonProperty("active")]
-        public virtual bool Active { get; set; }
+        public virtual int Active { get; set; }
 
         [JsonProperty("created_on")]
         public DateTime CreatedOn { get; set; }

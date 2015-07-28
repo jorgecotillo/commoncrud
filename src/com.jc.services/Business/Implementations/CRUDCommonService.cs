@@ -27,7 +27,7 @@ namespace com.jc.services.Business.Implementations
         {
             if (softDelete)
             {
-                entity.Active = false;
+                entity.Active = 0;
                 await _commonRepository.Update(entity);
             }
             else
@@ -50,6 +50,12 @@ namespace com.jc.services.Business.Implementations
                 await _commonRepository.Insert(entity);
             else
                 await _commonRepository.Update(entity);
+        }
+
+
+        public async Task Commit()
+        {
+            await _commonRepository.Commit(); 
         }
     }
 }

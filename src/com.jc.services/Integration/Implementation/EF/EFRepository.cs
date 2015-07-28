@@ -34,9 +34,10 @@ namespace com.jc.services.Integration.Implementation.EF
 
             if (active)
                 query = query
-                    .Where(entity => entity.Active == true);
+                    .Where(entity => entity.Active == 1);
 
             query = query
+                .OrderBy(entity => entity.Id)
                 .Skip(page)
                 .Take(pageSize);
 
@@ -45,11 +46,11 @@ namespace com.jc.services.Integration.Implementation.EF
 
         public async Task<TEntity> GetById(int id, bool active = true)
         {
-            return 
-                await this
-                .Context
-                .Where(entity => entity.Id == id && entity.Active == active)
-                .FirstOrDefaultAsync();
+            //return 
+                //await this
+                var x = Context
+                .Where(entity => entity.Id == id && entity.Active == 1);
+                return await x.FirstOrDefaultAsync();
         }
 
         public async Task Insert(TEntity entity)
@@ -58,10 +59,10 @@ namespace com.jc.services.Integration.Implementation.EF
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
+                
+                entity.Active = 1;
 
                 this.Entities.Add(entity);
-
-               await this._context.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -83,7 +84,7 @@ namespace com.jc.services.Integration.Implementation.EF
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
-                await this._context.SaveChangesAsync();
+                //await this._context.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -107,7 +108,7 @@ namespace com.jc.services.Integration.Implementation.EF
                     throw new ArgumentNullException("entity");
 
                 this.Entities.Remove(entity);
-                await this._context.SaveChangesAsync();
+                //await this._context.SaveChangesAsync();
 
             }
             catch (DbEntityValidationException dbEx)
@@ -128,7 +129,20 @@ namespace com.jc.services.Integration.Implementation.EF
         {
             get
             {
-                return this.Entities;
+                return this.Entities.AsNoTracking();
+            }
+        }
+
+        public async Task Commit()
+        {
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
 
